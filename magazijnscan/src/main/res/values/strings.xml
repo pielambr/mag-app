@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MagazijnScan</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="scan">Scan!</string>
+    <string name="gps_status">GPS Status</string>
+    <string name="internet_status">Internet Status</string>
+    <string name="available">Available</string>
+    <string name="not_available">Not Available</string>
+    <string name="no_scan_result">No Scan Result</string>
+    <string name="scan_result">Scan Result</string>
+    <string name="menu_settings">Settings</string>
+    <string name="settings_server">Server URL</string>
+    <string name="settings_password">Server password</string>
+    <string name="settings_save">Save settings</string>
+</resources>
