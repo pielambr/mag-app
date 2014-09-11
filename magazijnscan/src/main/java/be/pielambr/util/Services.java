@@ -8,6 +8,8 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.preference.PreferenceManager;
 
+import com.google.android.gms.location.LocationClient;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -77,5 +79,17 @@ public class Services {
             e.printStackTrace();
         }
         return "";
+    }
+
+    public static Location getLastLocation(Context c) {
+        LocationManager loc = (LocationManager) c.getSystemService(Context.LOCATION_SERVICE);
+        Criteria crit = new Criteria();
+        crit.setAccuracy(Criteria.ACCURACY_FINE);
+        String provider = loc.getBestProvider(crit, true);
+        return loc.getLastKnownLocation(provider);
+    }
+
+    public String getAPIURL(Context c) {
+        return getServerURL(c) + "/functions/API.php";
     }
 }

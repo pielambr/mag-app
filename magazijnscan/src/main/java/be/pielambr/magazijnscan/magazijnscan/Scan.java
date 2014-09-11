@@ -1,12 +1,15 @@
 package be.pielambr.magazijnscan.magazijnscan;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -97,9 +100,21 @@ public class Scan extends Activity implements LocationListener {
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         if(scanningResult != null){
-            ((ScanApplication) getApplication()).setResult(scanningResult);
-            Intent i = new Intent(this, ScanResult.class);
-            startActivity(i);
+            if(Services.getLastLocation(this) != null && Services.internetAvailable(this) && Services.locationAvailable(this)) {
+                ((ScanApplication) getApplication()).setLastLocation(Services.getLastLocation(this));
+                ((ScanApplication) getApplication()).setResult(scanningResult);
+                Intent i = new Intent(this, ScanResult.class);
+                startActivity(i);
+            } else {
+                new AlertDialog.Builder(this)
+                        .setTitle("No internet - GPS")
+                        .setMessage("Please make sure you are connected to the internet and that you have enabled your GPS")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).setIcon(android.R.drawable.ic_dialog_alert).show();
+            }
         } else {
             Toast toast = Toast.makeText(this, getString(R.string.no_scan_result), Toast.LENGTH_LONG);
             toast.show();
