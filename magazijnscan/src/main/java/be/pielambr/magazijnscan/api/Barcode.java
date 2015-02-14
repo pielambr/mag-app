@@ -8,6 +8,6 @@ public class Barcode {
     public String code;
     public String description;
     public String leverancier;
-    public double longitude;
-    public double latitude;
+    public String longitude;
+    public String latitude;
 }

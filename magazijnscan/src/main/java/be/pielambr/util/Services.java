@@ -89,7 +89,7 @@ public class Services {
         return loc.getLastKnownLocation(provider);
     }
 
-    public String getAPIURL(Context c) {
+    public static String getAPIURL(Context c) {
         return getServerURL(c) + "/functions/API.php";
     }
 }

@@ -166,4 +166,9 @@ public class Scan extends Activity implements LocationListener {
                 Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(pw.getWindowToken(), 0);
     }
+
+    public void printOverview(View v) {
+        Intent i = new Intent(this, ScanList.class);
+        startActivity(i);
+    }
 }
